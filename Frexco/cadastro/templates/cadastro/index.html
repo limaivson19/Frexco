@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block conteudo%}
+
+  <h1 class="mt-5">Usuários</h1>
+  <br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Login</th>
+        <th>Senha</th>
+        <th>Data de nascimento</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for cadastro in cadastros %}
+        <tr>
+          <td>
+            <a href="{% url 'ver_usuario' cadastro.id %}">{{ cadastro.id }}</a>
+          </td>
+          <td>{{ cadastro.login }}</td>
+          <td>{{ cadastro.senha }}</td>
+          <td>{{ cadastro.data_de_nascimento }}</td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+
+      <a href="{% static 'users.csv' %}">
+        <button type="button" class="btn btn-primary">Download csv</button>
+      </a>
+
+      <a href="{% static 'users.xlsx' %}">
+        <button type="button" class="btn btn-primary">Download xlsx</button>
+      </a>
+
+      <a href="{% static 'users.json' %}">
+        <button type="button" class="btn btn-primary">Download json</button>
+      </a>
+
+    </div>
+  </div>
+  <br>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% for pagina in cadastros.paginator.page_range %}
+        {% if cadastros.number == pagina %}
+          <li class="page-item active">
+            <a class="page-link" href="?p={{ pagina }}">{{ pagina }}</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?p={{ pagina }}">{{ pagina }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+
+{%endblock%}

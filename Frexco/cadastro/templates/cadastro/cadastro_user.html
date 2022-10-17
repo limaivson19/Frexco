@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{%block titulo%}Usuario{%endblock%}
+
+{% load crispy_forms_tags%}
+{% block conteudo %}
+<br><br>
+<div class="container">
+  <form action="{% url 'cadastrar_user' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table">
+      {{ form|crispy }}
+      <tr>
+        <td colspan="2">
+          <br>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+{% endblock %}

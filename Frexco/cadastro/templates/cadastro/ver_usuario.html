@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block conteudo%}
+
+    <h1 class="mt-5">{{ cadastro.login }}</h1>
+    <dl>
+      <dt>ID:</dt>
+      <dd>{{ cadastro.id }}</dd>
+
+      <dt>Login:</dt>
+      <dd>{{ cadastro.login }}</dd>
+
+      <dt>Senha:</dt>
+      <dd>{{ cadastro.senha }}</dd>
+
+      <dt>Data de nascimento:</dt>
+      <dd>{{ cadastro.data_de_nascimento }}</dd>
+
+    </dl>
+
+{%endblock%}
